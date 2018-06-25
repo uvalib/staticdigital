@@ -1,0 +1,70 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Static Digital Contents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Public</th>
+      <th>Address</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @staticdcs.each do |staticdc| %>
+      <tr>
+        <td><%= staticdc.name %></td>
+        <td><%= staticdc.public %></td>
+        <td><%= staticdc.address %></td>
+        <td><%= link_to 'Show', staticdc %></td>
+        <td><%= link_to 'Edit', edit_staticdc_path(staticdc) %></td>
+        <td><%= link_to 'Destroy', staticdc, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Add New PDF', new_staticdc_path %>
+
+<br><br>
+<% max_number = 1 %>
+<% Dir.chdir("/usr/local/projects/pdf_test") %>
+<p> Current path: <%= Dir.pwd %></p>
+<br>
+<p> Files under public directory:</p>
+<%#= @public_pdf_address %>
+
+<% Dir.chdir("/usr/local/projects/pdf_test/public") %>
+<% Dir.foreach(".") do |file| %>
+    <% Dir.chdir("/usr/local/projects/pdf_test/public/#{file}") %>
+    <% unless file.start_with?('.') %>
+      <% Dir.foreach(".") do |pdf| %>
+        <p><%= file +"/" + pdf unless pdf.start_with?('.') %></p>
+      <% end %>
+    <% end %>
+    <% i = file.split(':').last.to_i %>
+    <% if i > max_number  %>
+        <% max_number = i.to_i %>
+    <% end %>
+<% end %>
+<br>
+<p> Files under uva directory:</p>
+<% Dir.chdir("/usr/local/projects/pdf_test/uva") %>
+<% Dir.foreach(".") do |file| %>
+    <% Dir.chdir("/usr/local/projects/pdf_test/uva/#{file}") %>
+    <% unless file.start_with?('.') %>
+        <% Dir.foreach(".") do |pdf| %>
+            <p><%= file +"/" + pdf unless pdf.start_with?('.') %></p>
+        <% end %>
+    <% end %>
+    <% i = file.split(':').last.to_i %>
+    <% if i > max_number  %>
+        <% max_number = i.to_i %>
+    <% end %>
+<% end %>
+<br>
+Next available ID: <%= max_number+1 %>

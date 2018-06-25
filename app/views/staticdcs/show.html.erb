@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @staticdc.name %>
+</p>
+
+<p>
+  <strong>Public:</strong>
+  <%= @staticdc.public %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @staticdc.address %>
+</p>
+
+<p>
+  <strong>PDF:</strong>
+  <%= link_to "pdf download", rails_blob_path(@staticdc.pdf, disposition: 'attachment') %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_staticdc_path(@staticdc) %> |
+<%= link_to 'Back', staticdcs_path %>
