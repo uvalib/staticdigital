@@ -2,11 +2,13 @@ class StaticdcsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_staticdc, only: [:show, :edit, :update, :destroy]
 
+  @sdc_dir = ENV['STATICDIGITAL_PDF_DIR'] || 'default-content-directory'
+
   # GET /staticdcs
   # GET /staticdcs.json
   def index
     @staticdcs = Staticdc.all
-    @sdc_dir = "/usr/local/projects/pdf_test/"
+    
     @public_pdf_address = display_pdfs("public")
   #  @uva_pdf_address = display_pdfs(uva)
 
@@ -70,6 +72,21 @@ class StaticdcsController < ApplicationController
 
   def current_dir
     Dir.pwd
+  end
+
+  # returns a hash containing all the PDFs in the system in the
+  # format [ {id: "sdc:1", path: "/path/to/pdf", "uva-only": false}, 
+  #          {id: "sdc:2", path: "/path/to/pdf", "uva-only": true } ]
+  def list_pdfs() 
+    result = []
+    public = Dir.glob(File.join(File.join(@sdc_dir, "public"), File.join("**", "*.*")))
+    uva = Dir.glob(File.join(File.join(@sdc_dir, "uva"), File.join("**", "*.*")))
+    all = public + uva
+    all.each do | pdf |
+       path_array = pdf.split('/')
+       result << { id: path_array[-2], "path": pdf, "uva-only": (path_array[-3] == 'uva') }
+    end
+    result
   end
 
   def display_pdfs(subdir)
