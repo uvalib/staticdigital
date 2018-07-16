@@ -5,9 +5,9 @@
 <table>
   <thead>
     <tr>
-      <th>Id</th>
-      <th>Public</th>
-      <th>File</th>
+      <th>ID</th>
+      <th>Path</th>
+      <th>UVA-only</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,12 +15,9 @@
   <tbody>
     <% @contents.each do |content| %>
       <tr>
-        <td><%= content.id %></td>
-        <td><%= content.public %></td>
-        <td><%= content.file %></td>
-        <td><%= link_to 'Show', content %></td>
-        <td><%= link_to 'Edit', edit_content_path(content) %></td>
-        <td><%= link_to 'Destroy', content, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= content[:id] %></td>
+        <td><%= content[:path] %></td>
+        <td><%= content[:"uva-only"] %></td>
       </tr>
     <% end %>
   </tbody>

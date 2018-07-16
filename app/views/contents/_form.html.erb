@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :id %>
-    <%= form.text_field :id %>
+    <%= form.text_field :id, :value => @content.next_id,:readonly => true %>
   </div>
 
   <div class="field">
