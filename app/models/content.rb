@@ -7,7 +7,7 @@ class Content
 
   def save
     # set the destination path to write the file
-    dest_path = File.join(Content.content_dir,  @public=="1" ? 'public' : 'uva', next_id.to_s, @file.original_filename.to_s)
+    dest_path = File.join(Content.content_dir,  @public=="1" ? 'public' : 'uva', next_id, @file.original_filename.to_s)
     # Save the file
     puts "save #{@id},#{@public},#{@file.tempfile.path.inspect}----"
     puts dest_path
@@ -41,8 +41,8 @@ class Content
 
   # Find the next valid id
   def next_id
-    id_list = Content.all.collect{|x| x[:id]}
-    next_id = id_list.max.to_i + 1
+    id_list = Content.all.collect {|x| x[:id].gsub(/[^\d]/,'')}
+    next_id = "sdc:" + (id_list.max.to_i + 1).to_s
     next_id
   end
 end
