@@ -19,7 +19,6 @@ class Content
   # Find and list all files
   # Create a class wide method that's not limited to an object of class. use self.methodname
   def self.all
-    # TODO: Find and list all files
     result = []
     public = Dir.glob(File.join(File.join(content_dir, "public"), File.join("**", "*.*")))
     uva = Dir.glob(File.join(File.join(content_dir, "uva"), File.join("**", "*.*")))
@@ -42,7 +41,6 @@ class Content
 
   # Find the next valid id
   def next_id
-    # Todo: find the next id
     id_list = Content.all.collect{|x| x[:id]}
     next_id = id_list.max.to_i + 1
     next_id
