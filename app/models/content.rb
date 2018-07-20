@@ -14,6 +14,7 @@ class Content
 
     FileUtils.makedirs File.dirname(dest_path)
     FileUtils.mv(@file.tempfile.path, dest_path)
+    FileUtils.chmod 0644, dest_path
   end
 
   # Find and list all files
