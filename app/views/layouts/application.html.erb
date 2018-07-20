@@ -1,13 +1,7 @@
 <!DOCTYPE html>
-<!-- uvalib WebComponents: set @UVALIB to site to load components from -->
-<% @UVALIB = 'https://wwwstatic.lib.virginia.edu/bower_components' %>
-<script type="text/javascript" src='<%= "#{@UVALIB}/webcomponentsjs/webcomponents-lite.js" %>' > </script>
-<link rel="import" href='<%= "#{@UVALIB}/uvalib-theme/uvalib-theme.html" %>' />
-<link rel="import" href='<%= "#{@UVALIB}/uvalib-header/uvalib-header.html" %>'  />
-<link rel="import" href='<%= "#{@UVALIB}/uvalib-footer/uvalib-footer.html" %>'  />
 
 <html>
-<uvalib-header></uvalib-header>
+<%= render partial: 'shared/header' %>
   <head>
     <title>Sdc</title>
     <%= csrf_meta_tags %>
@@ -18,8 +12,10 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%=  yield %>
   </body>
+
+<%= render partial: 'shared/footer' %>
+
 </html>
 
-<uvalib-footer></uvalib-footer>

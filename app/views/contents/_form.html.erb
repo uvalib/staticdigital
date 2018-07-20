@@ -12,21 +12,24 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :id %>
-    <%= form.text_field :id, :value => @content.next_id,:readonly => true %>
+    <%= hidden_field_tag :id, 'Content ID:' %>
+    <%= form.hidden_field :id, :value => @content.next_id %>
+    <br />
   </div>
 
   <div class="field">
-    <%= form.label :public %>
+    <%= form.label :public, 'Public Access? ' %>
     <%= form.check_box :public %>
+    <br />
   </div>
 
   <div class="field">
-    <%= form.label :file %>
+    <%= form.label :file, 'Select Your File: ' %>
     <%= form.file_field :file %>
+    <br />
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Upload" %>
   </div>
 <% end %>

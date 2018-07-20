@@ -1,3 +1,68 @@
 // Place all the styles related to the contents controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+header {
+  background-color: #002F6C;
+  color: white;
+  padding:30px;
+  border-bottom: 1px solid #d2e5f7;
+}
+header .a {
+  color: white;
+  text-decoration: none;
+}
+header .h1 {
+  margin: 0;
+  font-family: 'Righteous', cursive;
+  font-size: 80px;
+}
+header .img {
+  position: absolute;
+  top: 45px;
+  right: 45px;
+  max-height: 75px;
+}
+
+footer {
+  border-top:1px solid #d2e5f7;
+  background-color: #002F6C;
+  color: #d2e5f7;
+  padding:20px;
+  position:relative;
+  font-size: 0.9em;
+}
+footer .external_links {
+  float:right;
+  text-align: right;
+}
+footer p.copy {
+  margin-top:20px;
+}
+footer a {
+  color: #d2e5f7;
+}
+footer a:hover {
+  color: white;
+}
+footer a.fdlp {
+  border-bottom: none !important;
+}
+footer div.address {
+  float:left;
+}
+footer div.legal {
+  position: relative;
+  text-align: center;
+  clear: both;
+}
+footer #fdlp-badge {
+  background: url(../assets/fdlp-badge.png);
+  height: 34px;  width: 39px;
+  display: inline-block;
+  position: relative;
+  top: 8px;
+  left: -8px;
+}
+footer p.copy, footer p.gov {
+  vertical-align: middle;
+}
