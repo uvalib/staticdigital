@@ -25,10 +25,9 @@ class ContentsController < ApplicationController
   # POST /contents.json
   def create
     @content = Content.new(content_params)
-
     respond_to do |format|
       if @content.save
-        format.html { redirect_to @content, notice: 'Content was successfully created.' }
+        format.html { render :file => "app/views/contents/_complete.html.erb"}
         format.json { render :show, status: :created, location: @content }
       else
         format.html { render :new }

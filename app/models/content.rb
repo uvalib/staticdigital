@@ -7,7 +7,7 @@ class Content
 
   def save
     # set the destination path to write the file
-    dest_path = File.join(Content.content_dir,  @public=="1" ? 'public' : 'uva', next_id, @file.original_filename.to_s)
+    dest_path = File.join(Content.content_dir,  @public=='1' ? 'public' : 'uva', next_id, @file.original_filename.to_s)
     # Save the file
     puts "save #{@id},#{@public},#{@file.tempfile.path.inspect}----"
     puts dest_path
@@ -26,7 +26,8 @@ class Content
     all = public + uva
     all.each do | pdf |
       path_array = pdf.split('/')
-      result << { id: path_array[-2], "path": pdf, "uva-only": (path_array[-3] == 'uva') }
+      pdf_link = File.join(ENV['CONTENT_DOWNLOAD_URL'], (path_array[-3] == 'uva') ? 'uva' : '', path_array[-2])
+      result << { id: path_array[-2], "path": pdf_link, "uva-only": (path_array[-3] == 'uva') }
     end
     result
   end
@@ -40,10 +41,20 @@ class Content
     end
   end
 
+  def current_id
+    id_list = Content.all.collect {|x| x[:id].gsub(/[^\d]/,'')}
+    current_id = id_list.max
+    current_id
+  end
+
   # Find the next valid id
   def next_id
-    id_list = Content.all.collect {|x| x[:id].gsub(/[^\d]/,'')}
-    next_id = "sdc:" + (id_list.max.to_i + 1).to_s
+    next_id = "sdc:" + (current_id.to_i + 1).to_s
     next_id
   end
+
+  def get_url
+    File.join(ENV['CONTENT_DOWNLOAD_URL'], @public=='1' ? '' : 'uva', "sdc:"+ current_id.to_s)
+  end
+
 end
