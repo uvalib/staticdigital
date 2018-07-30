@@ -54,10 +54,7 @@ class Content
   end
 
   def get_url
-    File.join(ENV['CONTENT_DOWNLOAD_URL'], @public=='1' ? '' : 'uva', "sdc:"+ current_id.to_s)
-  end
-
-  def display_url
     File.join(ENV['CONTENT_DOWNLOAD_URL'], "sdc:"+ current_id.to_s)
   end
+
 end

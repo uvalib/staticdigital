@@ -14,7 +14,8 @@
   <tbody>
     <% @contents.each do |content| %>
       <tr>
-        <td><%= link_to(File.join(ENV['CONTENT_DOWNLOAD_URL'], content[:"id"]), content[:"path"]) %></td>
+        <% url = File.join(ENV['CONTENT_DOWNLOAD_URL'], content[:"id"]) %>
+        <td><%= link_to(url, url) %></td>
         <td><%= content[:"uva-only"] %></td>
       </tr>
     <% end %>
