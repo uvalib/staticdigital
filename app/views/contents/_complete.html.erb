@@ -1,7 +1,7 @@
 <% if @content.public == '1' %>
   <p> Congratulations: </p>
-  <p> your document is now and forever available at <%= link_to(@content.get_url, @content.get_url) %> </p>
+  <p> your document is now and forever available at <%= link_to(@content.display_url, @content.get_url) %> </p>
 <% else %>
   <p> Congratulations: </p>
-  <p> Your document is now and forever available at  <%= link_to(@content.get_url, @content.get_url) %> to members of the UVA community who can sign in using netbadge. </p>
+  <p> Your document is now and forever available at  <%= link_to(@content.display_url, @content.get_url) %> to members of the UVA community who can sign in using netbadge. </p>
 <% end %>
