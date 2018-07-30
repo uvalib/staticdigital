@@ -21,13 +21,14 @@ class Content
   # Create a class wide method that's not limited to an object of class. use self.methodname
   def self.all
     result = []
+
     public = Dir.glob(File.join(File.join(content_dir, "public"), File.join("**", "*.*")))
     uva = Dir.glob(File.join(File.join(content_dir, "uva"), File.join("**", "*.*")))
     all = public + uva
     all.each do | pdf |
       path_array = pdf.split('/')
       pdf_link = File.join(ENV['CONTENT_DOWNLOAD_URL'], (path_array[-3] == 'uva') ? 'uva' : '', path_array[-2])
-      result << { id: path_array[-2], "path": pdf_link, "uva-only": (path_array[-3] == 'uva') }
+      result << { id: path_array[-2], "path": pdf_link, "uva-only": (path_array[-3] == 'uva') } unless (path_array[-4] =='uva' || path_array[-4] =='public')
     end
     result
   end
