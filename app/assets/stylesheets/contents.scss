@@ -66,3 +66,55 @@ footer #fdlp-badge {
 footer p.copy, footer p.gov {
   vertical-align: middle;
 }
+
+form .field {
+  display: inline-block;
+  background: #e8e8e8;
+  padding-left:10px;
+  padding: 10px;
+  color: #002F6C;
+
+}
+
+form .field .button{
+  background-color: #002F6C;
+  color: white;
+  margin: 4px 2px;
+  padding: 5px 24px;
+  font-size: 18px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: 0.3s;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+form .button:hover {
+  opacity: 1
+}
+
+form .field .upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+form .field .btn {
+  border: none;
+  color: #002F6C;
+  background-color: white;
+  padding: 8px 28px;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+form .field .upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
