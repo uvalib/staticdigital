@@ -43,7 +43,7 @@ class Content
   end
 
   def current_id
-    id_list = Content.all.collect {|x| x[:id].gsub(/[^\d]/,'')}
+    id_list = Content.all.collect {|x| x[:id].gsub(/[^\d]/,'').to_i}
     current_id = id_list.max
     current_id
   end
