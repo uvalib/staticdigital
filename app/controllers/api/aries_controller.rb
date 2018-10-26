@@ -15,11 +15,16 @@ class Api::AriesController < ApplicationController
 
   private
   def get_sdc(id)
-    content = Content.find(id)
-    r = {
-        identifier: id,
-        access_url: "http://digital.lib.virginia.edu/sdc:1",
-        master_file: "/lib_content44/PDF_archive/public/sdc:1/African-Americanfile-index.pdf"
-    }
+    id_in_collection = Content.all.select {|x| x[:id] == id}
+    if !id_in_collection.empty?
+        r = {
+          identifier: id,
+          access_url: File.join(ENV['CONTENT_DOWNLOAD_URL'], id),
+          master_file: Dir.glob(File.join((File.join(ENV['CONTENT_DIRECTORY'],id_in_collection[0][:"uva-only"] ? "uva" : "public", id)),File.join("*.pdf")))
+        }
+    end
+    r[:access_restriction] = "uva" if (!id_in_collection.empty? && id_in_collection[0][:"uva-only"]== true)
+    return r
   end
+
 end
