@@ -6,4 +6,9 @@ Rails.application.routes.draw do
 
   resources :healthcheck, only: [ :index ]
   resources :version, only: [ :index ]
+
+  namespace :api do
+    get "aries/:id" => "aries#show"
+    get "aries/" => "aries#index"
+  end
 end
