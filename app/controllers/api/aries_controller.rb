@@ -18,8 +18,8 @@ class Api::AriesController < ApplicationController
     id_in_collection = Content.all.select {|x| x[:id] == id}
     if !id_in_collection.empty?
         r = {
-          identifier: id,
-          access_url: File.join(ENV['CONTENT_DOWNLOAD_URL'], id),
+          identifier: [id],
+          access_url: [File.join(ENV['CONTENT_DOWNLOAD_URL'], id)],
           master_file: Dir.glob(File.join((File.join(ENV['CONTENT_DIRECTORY'],id_in_collection[0][:"uva-only"] ? "uva" : "public", id)),File.join("*.pdf")))
         }
     end
