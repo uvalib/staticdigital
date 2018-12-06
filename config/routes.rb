@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :version, only: [ :index ]
 
   namespace :api do
-    get "aries/:id" => "aries#show"
+    get "aries/:id" => "aries#show", :constraints => { :id => /[0-9A-Za-z\-\.\/]+/ }
     get "aries/" => "aries#index"
   end
 end
